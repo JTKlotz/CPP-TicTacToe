@@ -10,7 +10,7 @@ void TicTacToe::Display() const
 
 bool TicTacToe::IsGameOver() const
 {
-
+	//what loop is this =9 (tie)
 	if()
 	return false;
 }
@@ -20,3 +20,8 @@ void TicTacToe::TakeTurn()
 
 }
 
+bool isWinner()
+{
+	bool isWinner = false;
+	if()
+}
