@@ -16,7 +16,7 @@ int main()
 
 		// play game
 		pGame->Display();
-
+		
 		while (!pGame->IsGameOver())
 		{
 			pGame->TakeTurn();
@@ -24,7 +24,7 @@ int main()
 		}
 
 		delete pGame;
-
+	
 		if (!PlayAgain()) return 0;
 	}
 }
