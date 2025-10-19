@@ -7,12 +7,12 @@ class TicTacToe : public Game
 private:
 	char m_board[9] = { '1','2','3','4','5','6','7','8','9'};
 	int Player = 1;
-	int GameCount = 1;
+	int GameCount = 0;
 public:
 	TicTacToe() {};
 	~TicTacToe() {};
 
-	// Methods to be implemented by derived class
+	// mutator methods 
 	void SetArray(const char v, const int choice)
 	{
 		m_board[(choice - 1)] = v;
@@ -21,17 +21,22 @@ public:
 	{
 		Player = i;
 	}
-	int GetPlayer()const {
-		return Player;
-	}
+
 	void SetGameCount(const int i)
 	{
 		GameCount = i;
 	}
+	//Accessor methods
+	int GetPlayer()const {
+		return Player;
+	}
+	
 	int GetGameCount()const {
 		return GameCount;
 	}
 
+
+	//other methods
 	bool IsGameOver() const;
 	void TakeTurn();
 	void Display() const;
@@ -51,5 +56,5 @@ public:
 
 		return false;
 	}
-	bool CheckWinner(int Player);
+	bool CheckWinner(int Player)const;
 };
