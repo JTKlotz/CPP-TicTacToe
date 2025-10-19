@@ -27,11 +27,13 @@ public:
 		GameCount = i;
 	}
 	//Accessor methods
-	int GetPlayer()const {
+	int GetPlayer()const 
+	{
 		return Player;
 	}
 	
-	int GetGameCount()const {
+	int GetGameCount()const 
+	{
 		return GameCount;
 	}
 
@@ -40,6 +42,6 @@ public:
 	bool IsGameOver() const;
 	void TakeTurn();
 	void Display() const;
-	bool ValidateChoice(int i)const;
+	bool ValidateChoice(const int i);
 	bool CheckWinner(int Player)const;
 };
