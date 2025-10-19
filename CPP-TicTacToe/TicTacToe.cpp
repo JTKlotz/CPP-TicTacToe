@@ -8,6 +8,7 @@
 
 void TicTacToe::Display() const
 {
+	//display board
 	std::cout << m_board[0]<<"|" << m_board[1] << "|" << m_board[2] << "\n" << "-----\n"
 		<< m_board[3] << "|" << m_board[4] << "|" << m_board[5] << "\n" << "-----\n"
 		<< m_board[6] << "|" << m_board[7] << "|" << m_board[8] << "\n";
@@ -37,23 +38,29 @@ bool TicTacToe::ValidateChoice(int i) const
 
 void TicTacToe::TakeTurn()
 {
-	int Player = GetPlayer();
-	int choice = 0;
+	//determine player's turn
+	int player = GetPlayer();
+	
+	// variables
+	int choice;
 	bool isValid = false;
 
-	//determine who's turn it is
-	Player == 0 ? Player = 1 : Player = 0;
+	//change turns 
+	player == 1 ? player = 2 : player = 1;
 	
 	//get the user's choice
 	while (!(isValid))
 	{
-		std::cout << "Player " << (Player + 1) << ", pick a number between 1-9: ";
+		//ask for users input
+		std::cout << "Player " << (player) << ", pick a number between 1-9: ";
 		std::cin >> choice;
 
+		//validate the entered data
 		isValid = ValidateChoice(choice);
 	}
 
-	if (Player == 0)
+	//enter a "X" or "O" depending on which player's turn it is
+	if (player == 1)
 	{
 		SetArray('X', choice);
 	}
@@ -63,62 +70,68 @@ void TicTacToe::TakeTurn()
 
 	}
 
-	SetPlayer(Player);
-	SetGameCount(GameCount + 1);
+	
+	//set the player field to the current player
+	SetPlayer(player);
+	//increment gamecountfield to track the amount of games
+	SetGameCount(m_gameCount + 1);
+	//clear the console so that the boards to continously stack
 	system("cls");
 }
 
-bool TicTacToe::CheckWinner(int player)const
+bool TicTacToe::CheckWinner()const
 {
+	//variable used to assess possible win, will hold players sign (X or O)
 	char winner;
-	player == 0 ? winner = 'X' : winner = 'O';
+	//assign X to winner if player 1's turn and O to winner if player 2's turn
+	m_player == 1 ? winner = 'X' : winner = 'O';
 
-	//check row 1
+	//check row 1 for win
 	if (m_board[0] == m_board[1] && m_board[1] == m_board[2]&& m_board[0]==winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
-	//check row 2
+	//check row 2 for win
 	else if (m_board[3] == m_board[4] && m_board[4] == m_board[5] && m_board[3] == winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
-	//check row 3
+	//check row 3 for win
 	else if (m_board[6] == m_board[7] && m_board[7] == m_board[8] && m_board[6] == winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
-	//check column 1
+	//check column 1 for win
 	else if (m_board[0] == m_board[3] && m_board[3] == m_board[6] && m_board[0] == winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
-	//check column 2
+	//check column 2 for win
 	else if (m_board[1] == m_board[4] && m_board[4] == m_board[7] && m_board[1] == winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
-	//check column 3
+	//check column 3 for win
 	else if (m_board[2] == m_board[5] && m_board[5] == m_board[8] && m_board[2] == winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
-	//check diagonal 1
+	//check diagonal 1 for win
 	else if (m_board[0] == m_board[4] && m_board[4] == m_board[8] && m_board[0] == winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
-	//check diagonal 2
+	//check diagonal 2 for win
 	else if (m_board[2] == m_board[4] && m_board[4] == m_board[6] && m_board[0] == winner)
 	{
-		std::cout << "Player " << (player + 1) << " wins\n";
+		std::cout << "Player " << (m_player) << " wins\n";
 		return true;
 	}
 	// no winner
@@ -128,16 +141,21 @@ bool TicTacToe::CheckWinner(int player)const
 
 bool TicTacToe::IsGameOver() const
 {
-	int player = GetPlayer();
-	bool isWinner = CheckWinner(player);
-	//Work on this
-	if (isWinner || GameCount == 9)
+
+	//assing status of the game to isWinner (true = game was won and false = game is not over yet)
+	//check if there is a winning combination
+	bool isWinner = CheckWinner();
+	//if there is a winner or a tie
+	if (isWinner || m_gameCount == 9)
 	{
-		if (!isWinner && GameCount == 9)
+		if (!isWinner && m_gameCount == 9)
 		{
+			//if there is a tie, display message then return true
 			std::cout << "Game ends in a tie!\n";
 		}
+		//if there is a winner, return true
 		return true;
 	}
-	else return false;
+	//if no winner or not yet at game 9, return false
+	return false;
 }

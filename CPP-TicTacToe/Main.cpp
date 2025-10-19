@@ -37,7 +37,11 @@ bool PlayAgain()
 		std::cout << "Play again? (y/n): ";
 		std::cin >> input;
 
-		if (std::tolower(input) == 'y') return true;
+		if (std::tolower(input) == 'y')
+		{
+			system("cls");// added so it will clear the console prior to next game
+			return true;
+		}
 		else if (std::tolower(input) == 'n') return false;
 	}
 }

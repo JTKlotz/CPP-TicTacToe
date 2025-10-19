@@ -6,8 +6,8 @@ class TicTacToe : public Game
 {
 private:
 	char m_board[9] = { '1','2','3','4','5','6','7','8','9'};
-	int Player = 1;
-	int GameCount = 0;
+	int m_player = 2;
+	int m_gameCount = 0;
 public:
 	TicTacToe() {};
 	~TicTacToe() {};
@@ -19,22 +19,22 @@ public:
 	}
 	void SetPlayer(const int i)
 	{
-		Player = i;
+		m_player = i;
 	}
 
 	void SetGameCount(const int i)
 	{
-		GameCount = i;
+		m_gameCount = i;
 	}
 	//Accessor methods
 	int GetPlayer()const 
 	{
-		return Player;
+		return m_player;
 	}
 	
 	int GetGameCount()const 
 	{
-		return GameCount;
+		return m_gameCount;
 	}
 
 
@@ -43,5 +43,5 @@ public:
 	void TakeTurn();
 	void Display() const;
 	bool ValidateChoice(int i) const;
-	bool CheckWinner(int Player) const;
+	bool CheckWinner() const;
 };
