@@ -12,7 +12,7 @@ void TicTacToe::Display() const
 		<< m_board[3] << "|" << m_board[4] << "|" << m_board[5] << "\n" << "-----\n"
 		<< m_board[6] << "|" << m_board[7] << "|" << m_board[8] << "\n";
 }
-bool TicTacToe::ValidateChoice(const int i)
+bool TicTacToe::ValidateChoice(int i) const
 {
 	//validate that choice is in the correct range
 	if ((i < 1) || (i > 9))

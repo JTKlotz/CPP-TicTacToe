@@ -42,6 +42,6 @@ public:
 	bool IsGameOver() const;
 	void TakeTurn();
 	void Display() const;
-	bool ValidateChoice(const int i);
-	bool CheckWinner(int Player)const;
+	bool ValidateChoice(int i) const;
+	bool CheckWinner(int Player) const;
 };
