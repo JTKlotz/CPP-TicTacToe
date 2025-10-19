@@ -40,21 +40,6 @@ public:
 	bool IsGameOver() const;
 	void TakeTurn();
 	void Display() const;
-	bool ValidateChoice(const int i)
-	{
-		//validate that choice is in the correct range
-		if((i < 1) && (i > 9))
-		{
-			return false;
-		}
-		//validate that the choice is not already taken
-		if (!(m_board[(i-1)] == 'X') && !(m_board[(i-1)] == 'O'))
-		{
-			
-			return true;
-		}
-
-		return false;
-	}
+	bool ValidateChoice(int i)const;
 	bool CheckWinner(int Player)const;
 };

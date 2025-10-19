@@ -12,7 +12,27 @@ void TicTacToe::Display() const
 		<< m_board[3] << "|" << m_board[4] << "|" << m_board[5] << "\n" << "-----\n"
 		<< m_board[6] << "|" << m_board[7] << "|" << m_board[8] << "\n";
 }
-
+bool TicTacToe::ValidateChoice(int i) const
+{
+	//validate that choice is in the correct range
+	if ((i < 1) && (i > 9))
+	{
+		return false;
+	}
+	else
+	{
+		//validate that the choice is not already taken
+		if (m_board[(i - 1)] == 'X' || m_board[(i - 1)] == 'O')
+		{
+			std::cout << "Spot already taken, pick again.\n";
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+}
 
 
 void TicTacToe::TakeTurn()
@@ -31,10 +51,6 @@ void TicTacToe::TakeTurn()
 		std::cin >> choice;
 
 		isValid = ValidateChoice(choice);
-		if (!(isValid))
-		{
-			std::cout << "Spot already taken, pick again.\n";
-		}
 	}
 
 	if (Player == 0)
