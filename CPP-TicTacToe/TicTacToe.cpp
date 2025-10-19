@@ -2,6 +2,8 @@
 #include "TicTacToe.h"
 
 #include <iostream>
+#include <string>
+
 
 
 void TicTacToe::Display() const
@@ -11,12 +13,7 @@ void TicTacToe::Display() const
 		<< m_board[6] << "|" << m_board[7] << "|" << m_board[8] << "\n";
 }
 
-bool TicTacToe::IsGameOver() const
-{
-	//Work on this
-	if(isWinner() || GameCount = 9)
-	return false;
-}
+
 
 void TicTacToe::TakeTurn()
 {
@@ -54,10 +51,72 @@ void TicTacToe::TakeTurn()
 
 }
 
-bool isWinner()
+bool TicTacToe::CheckWinner(int player)
 {
-	
-	
+	char winner;
+	player == 0 ? winner = 'X' : winner = 'O';
 
+	//check row 1
+	if (m_board[0] == m_board[1] && m_board[1] == m_board[2]&& m_board[0]==winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	//check row 2
+	else if (m_board[3] == m_board[4] && m_board[4] == m_board[5] && m_board[3] == winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	//check row 3
+	else if (m_board[6] == m_board[7] && m_board[7] == m_board[8] && m_board[6] == winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	//check column 1
+	else if (m_board[0] == m_board[3] && m_board[3] == m_board[6] && m_board[0] == winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	//check column 2
+	else if (m_board[1] == m_board[4] && m_board[4] == m_board[7] && m_board[1] == winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	//check column 3
+	else if (m_board[2] == m_board[5] && m_board[5] == m_board[8] && m_board[2] == winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	//check diagonal 1
+	else if (m_board[0] == m_board[4] && m_board[4] == m_board[8] && m_board[0] == winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	//check diagonal 2
+	else if (m_board[2] == m_board[4] && m_board[4] == m_board[6] && m_board[0] == winner)
+	{
+		std::cout << "Player " << (player + 1) << " wins";
+		return true;
+	}
+	// no winner
+	return false;
+}
+
+
+bool TicTacToe::IsGameOver() const
+{
+	int player = GetPlayer();
+	bool gameOver = CheckWinner(player);
+	//Work on this
+	if (gameOver || GameCount = 9)
+	{
+		return true;
+	}
 	return false;
 }

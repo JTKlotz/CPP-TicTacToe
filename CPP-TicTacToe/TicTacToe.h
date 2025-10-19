@@ -15,7 +15,7 @@ public:
 	// Methods to be implemented by derived class
 	void SetArray(const char v, const int choice)
 	{
-				m_board[(choice - 1)] = v;
+		m_board[(choice - 1)] = v;
 	}
 	void SetPlayer(const int i)
 	{
@@ -51,4 +51,5 @@ public:
 
 		return false;
 	}
+	bool CheckWinner(int Player);
 };
