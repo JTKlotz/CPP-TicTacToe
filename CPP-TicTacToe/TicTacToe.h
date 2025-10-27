@@ -13,13 +13,13 @@ public:
 	~TicTacToe() {};
 
 	// mutator methods 
-	void SetArray(const char v, const int choice)
+	void SetArray(const char playerMarker, const int choice)
 	{
-		m_board[(choice - 1)] = v;
+		m_board[(choice - 1)] = playerMarker;
 	}
-	void SetPlayer(const int i)
+	void SetPlayer(const int player)
 	{
-		m_player = i;
+		m_player = player;
 	}
 
 	void SetGameCount(const int i)
