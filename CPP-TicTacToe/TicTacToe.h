@@ -15,7 +15,7 @@ public:
 	// mutator methods 
 	void SetArray(const char playerMarker, const int choice)
 	{
-		m_board[(choice - 1)] = playerMarker;
+		m_board[(choice)] = playerMarker;
 	}
 	void SetPlayer(const int player)
 	{

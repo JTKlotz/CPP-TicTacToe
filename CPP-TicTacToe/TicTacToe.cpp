@@ -16,14 +16,14 @@ void TicTacToe::Display() const
 bool TicTacToe::ValidateChoice(int i) const
 {
 	//validate that choice is in the correct range
-	if ((i < 1) || (i > 9))
+	if ((i < 0) || (i > 8))
 	{
 		return false;
 	}
 	else
 	{
 		//validate that the choice is not already taken
-		if (m_board[(i - 1)] == 'X' || m_board[(i - 1)] == 'O')
+		if (m_board[(i)] == 'X' || m_board[(i)] == 'O')
 		{
 			std::cout << "Spot already taken, pick again.\n";
 			return false;
@@ -54,7 +54,7 @@ void TicTacToe::TakeTurn()
 		//ask for users input
 		std::cout << "Player " << (player) << ", pick a number between 1-9: ";
 		std::cin >> choice;
-
+		choice = choice--;
 		//validate the entered data
 		isValid = ValidateChoice(choice);
 	}
